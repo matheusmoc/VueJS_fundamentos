@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>Display de cores</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" id="inputTexto">
+
+        <select id="opcoes">
+            <option value="a">Opção 1</option>
+            <option value="b">Opção 2</option>
+            <option value="c">Opção 3</option>
+        </select>
+        <br>
+        <p id="paragrafo" style="color: red;">Olá pessoa</p>
+        <div id='bloco'>conteudo interno da div</div>
+        <button @click='selecionarElementoFilho()'>Botão</button>
+
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                selecionarElementoFilho(){
+                    //console.log(inputTexto.value)
+                    //console.log(opcoes.value)
+                    //console.log(paragrafo.style.color)
+                    console.log(bloco.innerHTML)
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>
