@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div id="app">
+        <a href="https://github.com/matheusmoc" 
+        target="_blank" 
+        @click='prevenindoComportamentoPadrao()'>
+        Github<br> 
+    </a>
+    Mensagem:{{msg}}
+    <hr>
+    <button @click.once=executarUmaVez>Botão</button>
+    <p>Cliques: {{cliques}}</p>
+    <hr>
+    <form @submit.prevent.once='prevenirUmaVez()'>
+        <button type="submit">Enviar</button>
+    </form>
+    <p>Formulário: {{formulario}}</p>
+    <hr>
+    <input type="text" @keyup.Enter='capturandoTeclas($event)'>
+    <p>Teclas (pressione enter): {{teclas}}</p>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Clique no link',
+                cliques: 0,
+                formulario:'',
+                teclas: '',
+            },
+            methods: {
+                prevenindoComportamentoPadrao(){
+                    //event.preventDefault() //previninr evento
+                    this.msg = 'Comportamento ativado'
+                },
+                executarUmaVez(){
+                    this.cliques++ 
+                },
+                prevenirUmaVez(){
+                    this.formulario = 'prevenindo o comportamento padrão'
+                },
+
+                capturandoTeclas(event){
+                    this.teclas = 'Método disparado'//event.key
+                }
+
+
+            }
+        })
+
+    </script>
+</body>
+</html>
