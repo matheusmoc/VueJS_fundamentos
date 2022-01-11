@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>V-if</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- v-if simples -->
+        <button @click="exibirSaldo = !exibirSaldo">
+           <span v-if='!exibirSaldo'>Exibir saldo</span> 
+           <span v-if='exibirSaldo'>Ocultar saldo saldo</span>  
+        </button> <!--toggle-->
+        <p>
+          Saldo: <span v-if='exibirSaldo'>R$ {{saldo}} </span>
+                 <span v-if='!exibirSaldo'>xxxx</span>
+        </p>
+        <hr>
+        <!-- v-if e v-else -->
+        Valor a pagar: <input type="number" id="inputValor" @blur="setValor()"> <!-- blur: sempre que perder o foco o valor sera exibido-->
+        <br>
+        <p v-if="valor > saldo">Sem saldo suficinete para pagamento</p>
+        <p v-else>Pagamento pronto!</p>
+        <hr>
+        <!-- v-if, v-else-if e v-else -->
+        Nota: <input type="number" id="inputNota" @blur="setNota" >
+        <p v-if="nota==''">Nos avalie</p>
+        <p v-else-if='nota >= 9'>Muito obrigado pela nota acima da média! :D</p>
+        <p v-else-if='nota >= 6 && nota < 9'>Muito obrigado pela nota, aceitamos sugestões para melhorarmos :)</p>
+        <p v-else-if= 'nota >= 0 && nota < 6'>Lamentamos pela insatisfação, aceitamos sua sugestão para melhorarmos! :(</p>
+        <p v-else> Avaliação inválida </p>
+
+
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                saldo: 4500.00,
+                exibirSaldo:true,
+                valor: 0,
+                nota: 0,
+            },
+            methods: {
+                setValor(){
+                    //console.log(inputVencimento.value)
+                    this.valor = inputValor.value
+                },
+
+                setNota(){
+                    this.nota = inputNota.value
+                    console.log(this.nota)
+                },
+            }
+        })
+
+    </script>
+</body>
+</html>
