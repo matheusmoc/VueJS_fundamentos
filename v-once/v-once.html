@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>v-once</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- v-once mantém o valor estático  -->
+       <p v-once="saldo"> saldo inicial: {{saldo}}</p>
+       <p> saldo atualizado: {{saldo}}</p> 
+       <input type="text" id="inputValor">
+       <button @click="creditar()">Creditar</button>
+       <button @click="debitar()">Debitar</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                saldo:1500,
+            },
+            methods: {
+                creditar(){
+                    console.log(this.saldo += Number(inputValor.value)) //saldo + inputValor
+                },
+
+                debitar(){
+                    console.log(this.saldo -= inputValor.value) //saldo - inputValor
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>
+

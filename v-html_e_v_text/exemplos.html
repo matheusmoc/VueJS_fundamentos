@@ -11,10 +11,11 @@
 </head>
 <body>
     <div id="app">
-        <!-- injeção de html dentro do html -->
-        <div v-html="elementosHTML"> 
-            Texto de <b>exemplo</b>
-        </div>
+        <!-- injeção de html dentro do html --> 
+        <div v-html="elementosHTML"> Texto de <b>exemplo</b> </div> 
+        <!-- converte para texto -->
+        <div v-text="elementosHTML">Texto exemplo</div> 
+
     </div>
 
     <script>
