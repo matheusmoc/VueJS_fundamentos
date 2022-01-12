@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>v-for</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="c in comentarios">
+                {{c.id}} - {{c.comentario}}
+            </li>
+            <button @click='adicionarElemento()'>Adicionar</button>
+            <button @click='removerElemento()'>Remover</button>
+            <button @click='modificarElemento()'>Modificar</button>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="(linguagem, key) in linguagens" v-text = "key +'-'+ linguagem"></li>
+        </ul>
+
+        <hr>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>framework</th>
+                    <th>experiência</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="({framework, tempo}, key) in frameworks"> <!-- destructuring assignment -->
+                    <td>{{key}}</td>
+                    <td>{{framework}}</td>
+                    <td>{{tempo}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <ul>
+            <!-- key para o método funcionar em todo html -->
+            <li v-for='p in publicacoes' style="border: solid 1px; margin-bottom: 10px;" :key="p.id">
+             <div>
+                {{p.publicacao}}
+                <hr>
+                <input type="text" id="">
+             </div>   
+            </li>
+        </ul>
+        <button @click='misturarArray()'>Misturar Publicações</button>
+
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                comentarios: [
+                    {id: 1, comentario: 'comentario 1'},
+                    {id: 2, comentario: 'comentario 2'},
+                    {id: 3, comentario: 'comentario 3'}
+                ],
+                linguagens: ['php', 'javascript', 'SQL'],
+                
+                frameworks:{
+                    
+                    1: {
+                    framework: 'laravel', 
+                    tempo: '2 anos',
+                    },
+
+                    2: {
+                    framework: 'vueJS',
+                    tempo:'1 ano',
+                    },
+                },
+
+
+                publicacoes: [
+                {
+                    id:1,
+                    publicacao: 'publicacao 1 aqui',
+                },
+                {
+                    id:2,
+                    publicacao: 'publicacao 2 aqui',  
+                },                
+                {
+                    id:3,
+                    publicacao: 'publicacao 3 aqui',  
+                }
+                ]
+            },
+            methods: {
+                misturarArray(){
+                    let misturado = []
+
+                    misturado[0] = this.publicacoes[2]
+                    misturado[1] = this.publicacoes[0]
+                    misturado[2] = this.publicacoes[1]
+                    this.publicacoes = misturado
+                },
+
+                adicionarElemento(){
+                    //this.comentarios[3] = {id: 4, comentario: 'novo comentário'}
+                    //console.log(this.comentarios)
+
+                    this.comentarios.push({id: 4, comentario: 'novo comentário'})
+                    
+                },
+
+                removerElemento(){
+                    this.comentarios.pop()
+                },
+
+                modificarElemento(){
+                    //this.comentarios[1] = {id: 2, comentario: 'comentario 2 alterado'}
+                   
+                    this.$set(              //this.$set(<array>, <key>, <novo_valor>)
+                        this.comentarios, 
+                        1,
+                        {id: 2, comentario: 'comentario alterado' }
+                        )    
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>
