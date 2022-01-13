@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>v-model</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- two way data binding -->
+
+        {{paciente}}<br>
+        <!-- <input type="text" v-bind:value="paciente" @keyup="paciente = $event.target.value" > -->
+        <!-- <input type="text" v-bind:value="paciente" @keyup="setPaciente($event)" > -->
+        <!-- one way data bind ou bind de mão unica v-bind com o v-on resultando o two way -->
+        
+        
+        
+        <input type="text" v-model="paciente">  <!-- two way data binding com o v-model-->
+        
+        <hr>
+        <input type="radio" value="f" v-model="sexo"> Feminino  
+        <input type="radio" value="m" v-model="sexo"> Masculino
+        <!-- entende que os atributos sexo estão relacionados, funciona como um name=""-->
+        <br> {{sexo}}
+        <hr>
+        <br>
+        <select v-model= "plano">
+            <option value="" disabled>- Selecione um plano -</option>
+            <option value="1">opção 1</option>
+            <option value="2">opção 2</option>
+            <option value="3">opção 3</option>
+            <option value="4">opção 4</option>
+        </select>
+        <p>{{plano}}</p>
+        
+        <hr>
+        
+        <input type="checkbox" value="100" v-model="nivel">Moderado
+        <input type="checkbox" value="101" v-model="nivel">Urgente
+        <input type="checkbox" value="102" v-model="nivel">Crítico
+        
+        <br>{{nivel}} 
+
+        <hr>
+
+        <textarea cols="30" rows="10" v-model="descricao"></textarea>
+        {{descricao}}
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                paciente: 'maria',
+                sexo: '',
+                plano:'',
+                nivel:[],
+                descricao:''
+            },
+            methods: {
+                // setPaciente(e){
+                //     this.paciente = e.target.value
+                // }
+
+            },
+            computed: {}
+        })
+
+    </script>
+</body>
+</html>
+
